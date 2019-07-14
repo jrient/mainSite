@@ -1,0 +1,2 @@
+view blade
+{{$name}} {{$age}}

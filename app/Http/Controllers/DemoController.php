@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request;
 
 class DemoController extends Controller
 {
@@ -93,6 +93,85 @@ class DemoController extends Controller
         // 从缓存中删除一个对象
         $status1 = Cache::forget($key);
 
+    }
+
+    public function test1(Request $request)
+    {
+        $data =[
+            'q' => '',
+            'p' => '',
+            'bs' => '',
+            'csor' => '',
+            [
+                [
+                    'q' => '章子欣',
+                    't' => 'hs',
+                    [
+                        'q' => '章子欣',
+                        'ts' => '',
+                        'src' => '1',
+                        'mtype' => '',
+                        'ek' => '',
+                    ],
+                ],
+                [
+                    'q' => '掌中之物',
+                    't' => 'hs',
+                    [
+                        'q' => '掌中之物',
+                        'ts' => '',
+                        'src' => '1',
+                        'mtype' => '',
+                        'ek' => '',
+                    ],
+                ],
+                [
+                    'q' => '润典',
+                    't' => 'hs',
+                    [
+                        'q' => '润典',
+                        'ts' => '',
+                        'src' => '1',
+                        'mtype' => '',
+                        'ek' => '',
+                    ],
+                ],
+                [
+                    'q' => '天猫精灵 蓝牙连接',
+                    't' => 'hs',
+                    [
+                        'q' => '天猫精灵 蓝牙连接',
+                        'ts' => '',
+                        'src' => '1',
+                        'mtype' => '',
+                        'ek' => '',
+                    ],
+                ],
+                [
+                    'q' => 'tgp该页面暂时无法显示',
+                    't' => 'hs',
+                    [
+                        'q' => 'tgp该页面暂时无法显示',
+                        'ts' => '',
+                        'src' => '1',
+                        'mtype' => '',
+                        'ek' => '',
+                    ],
+                ],
+                [
+                    'q' => '输入方糖r的ping',
+                    't' => 'hs',
+                    [
+                        'q' => '输入方糖r的ping',
+                        'ts' => '',
+                        'src' => '1',
+                        'mtype' => '',
+                        'ek' => '',
+                    ],
+                ],
+            ],
+            's' => [],
+        ];
     }
 
     public function section1()

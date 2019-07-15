@@ -18,9 +18,24 @@
 
 //工具类
 Route::namespace('Tools')->group(function(){
-    Route::get('toolsTimestampConversion', [
-        'uses' =>  'ToolsController@timestampConversion'
-    ]);
+    Route::post('tools{action}Ajax', function($action) {
+        $namespace = 'App\Http\Controllers\Tools\\';
+        $className  = $namespace.'ToolsController';
+        $tempObj = new $className;
+        $action .= 'Ajax';
+        return call_user_func([$tempObj, $action]);
+    })->middleware('debug');
+
+    Route::get('tools{action}', function($action) {
+        $namespace = 'App\Http\Controllers\Tools\\';
+        $className  = $namespace.'ToolsController';
+        $tempObj = new $className;
+        return call_user_func([$tempObj, $action]);
+    })->middleware('debug');
+
+    Route::get('tools', [
+        'uses' => 'ToolsController@index'
+    ])->middleware('debug');
 });
 
 Route::get('demo/section1', [
@@ -47,3 +62,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//自动路由
+Route::get('/{controller}/{action}', function ($controller, $action) {
+    $namespace = 'App\Http\Controllers\\';
+    $className = $namespace . ucfirst($controller . "Controller");
+    $tempObj = new $className();
+    return call_user_func(array($tempObj, $action));
+});

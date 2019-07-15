@@ -1,8 +1,12 @@
 <!-- timestampConversion -->
 @extends('tools.layouts')
 
+@section('title')
+    工具集 - 时间戳转换
+@endsection
+
 @section('content_title')
-    <h2 class="text-center">时间戳转换</h2>
+    <h2 class="text-center">时间戳转换 <a href="/tools"><small>工具集</small></a></h2>
 @endsection
 
 @section('content')
@@ -11,14 +15,14 @@
             <div class="col-md-4">
                 <input type="text" class="form-control" value="{{$timestamp}}" id="timestamp">
             </div>
-            <div class="col-md-1">
-                <button class="btn btn-default btn-block" id="to_right"><span class="glyphicon glyphicon-forward"></span></button>
+            <div class="col-md-1 text-center">
+                <button class="btn btn-default btn-block" id="to_right"><span class="oi oi-arrow-thick-right"></span></button>
             </div>
-            <div class="col-md-2">
-                <button class="btn btn-default center-block" id="refresh"><span class="glyphicon glyphicon-refresh"></span> </button>
+            <div class="col-md-2 text-center">
+                <button class="btn btn-default " id="refresh"><span class="oi oi-reload"></span> </button>
             </div>
-            <div class="col-md-1">
-                <button class="btn btn-default btn-block" id="to_left"><span class="glyphicon glyphicon-backward"></span></button>
+            <div class="col-md-1 text-center">
+                <button class="btn btn-default btn-block" id="to_left"><span class="oi oi-arrow-thick-left"></span></button>
             </div>
             <div class="col-md-4">
                 <input type="text" class="form-control" value="{{$datetime}}" id="datetime">

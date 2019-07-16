@@ -44,7 +44,7 @@ class ToolsController extends CommonController
         $type =  Input::get('type');
         $content = Input::get('content');
         if (empty($type) || empty($content)) {
-            ApiRequest::failJsonRequest('params error');
+            ApiRequest::failJsonRequest('empty params');
         }
         if  ($type === 'json') {
             $newContent = rtrim(self::formatPhp(json_decode($content, true)),",\n");

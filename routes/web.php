@@ -16,26 +16,30 @@
  *
  */
 
+Route::apiResource('demoNo2', 'Demo2Controller', [
+    'test1' => 'test1'
+])->middleware('debug');
+
 //工具类
-Route::namespace('Tools')->group(function(){
+Route::middleware('debug')->namespace('Tools')->group(function(){
     Route::post('tools{action}Ajax', function($action) {
         $namespace = 'App\Http\Controllers\Tools\\';
         $className  = $namespace.'ToolsController';
         $tempObj = new $className;
         $action .= 'Ajax';
         return call_user_func([$tempObj, $action]);
-    })->middleware('debug');
+    });
 
     Route::get('tools{action}', function($action) {
         $namespace = 'App\Http\Controllers\Tools\\';
         $className  = $namespace.'ToolsController';
         $tempObj = new $className;
         return call_user_func([$tempObj, $action]);
-    })->middleware('debug');
+    });
 
     Route::get('tools', [
         'uses' => 'ToolsController@index'
-    ])->middleware('debug');
+    ]);
 });
 
 Route::get('demo/section1', [

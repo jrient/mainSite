@@ -19,11 +19,11 @@
                 <a class="btn btn-secondary" href="/toolsJsonConversion">Json-PHP转换</a>
             </div>
             <div class="col-md-3">
-                {{--<a class="btn btn-secondary" href="/toolsTimestampConversion">时间戳转换</a>--}}
-            {{--</div>--}}
-            {{--<div class="col-md-3">--}}
-                {{--<a class="btn btn-secondary" href="/toolsTimestampConversion">时间戳转换</a>--}}
-            {{--</div>--}}
+                <a class="btn btn-secondary" href="/toolsBase64Conversion">Base64编码转换</a>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-secondary" href="/toolsUrlEncodeConversion">UrlEncode编码转换</a>
+            </div>
         </div>
     </div>
 @endsection

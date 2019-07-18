@@ -38,7 +38,47 @@ class ToolsController extends CommonController
         return view('tools.jsonConversion');
     }
 
-    //json
+    public function base64Conversion()
+    {
+        return view('tools.base64Conversion');
+    }
+
+    public function urlEncodeConversion()
+    {
+        return view('tools.urlEncodeConversion');
+    }
+
+    //json=========================================================
+    public function urlEncodeConversionAjax()
+    {
+        $type =  Input::get('type');
+        $content = Input::get('content');
+        if (empty($type) || empty($content)) {
+            ApiRequest::failJsonRequest('empty params');
+        }
+        if ($type === 'encode') {
+            $newContent = urlencode($content);
+        } else {
+            $newContent = urldecode($content);
+        }
+        ApiRequest::successJsonRequest(['content' => $newContent]);
+    }
+
+    public function base64ConversionAjax()
+    {
+        $type =  Input::get('type');
+        $content = Input::get('content');
+        if (empty($type) || empty($content)) {
+            ApiRequest::failJsonRequest('empty params');
+        }
+        if ($type === 'encode') {
+            $newContent = base64_encode($content);
+        } else {
+            $newContent = base64_decode($content);
+        }
+        ApiRequest::successJsonRequest(['content' => $newContent]);
+    }
+
     public function jsonConversionAjax()
     {
         $type =  Input::get('type');

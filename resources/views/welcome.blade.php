@@ -4,8 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Jrient home</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 
+        <link href="https://cdn.staticfile.org/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
@@ -81,9 +84,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Hello Gays
+                    Hello Jrient
                 </div>
             </div>
         </div>
+
+        <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+        <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+        <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        @include('bottom')
     </body>
 </html>

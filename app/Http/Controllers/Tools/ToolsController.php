@@ -17,7 +17,32 @@ class ToolsController extends CommonController
 
     public function index()
     {
-        return view('tools.index');
+        $map = [
+            [
+                'name' => '时间戳转换',
+                'url' => '/toolsTimestampConversion'
+            ],
+            [
+                'name' => 'Json-PHP转换',
+                'url' => '/toolsJsonConversion'
+            ],
+            [
+                'name' => 'Base64编码转换',
+                'url' => '/toolsBase64Conversion'
+            ],
+            [
+                'name' => 'UrlEncode编码转换',
+                'url' => '/toolsUrlEncodeConversion'
+            ],
+            [
+                'name' => 'Url参数解析',
+                'url' => '/toolsUrlAnalysis'
+            ],
+        ];
+        return view('tools.index', [
+            'map' => $map,
+            'total' => count($map)
+        ]);
     }
 
     /**
@@ -46,6 +71,22 @@ class ToolsController extends CommonController
     public function urlEncodeConversion()
     {
         return view('tools.urlEncodeConversion');
+    }
+
+    public function urlAnalysis()
+    {
+        return view('tools.urlAnalysis');
+    }
+
+    public function offTime()
+    {
+	    $lastTime = strtotime(date('Y-m-d 17:30:00'));
+        $nowTime = time();
+        $offTime = ($lastTime-$nowTime)>0 ? $lastTime - $nowTime : 0;
+        $h = floor($offTime/3600);
+        $m = ceil(($offTime-$h*3600)/60);
+	    echo '<h2>距离下班还有： '.$h.':'.$m.'</h2>';
+        echo '<script>setTimeout(function(){window.location.reload();}, 10000)</script>';
     }
 
     //json=========================================================
@@ -91,6 +132,39 @@ class ToolsController extends CommonController
         } else {
 //            $tmpContent = eval('return '.$content.';');
             $newContent = json_encode($content, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        }
+
+        ApiRequest::successJsonRequest(['content' => $newContent]);
+    }
+
+    public function urlAnalysisAjax()
+    {
+        ini_set('opcache.enable', 0);
+        $content = Input::get('content');
+        if (empty($content)) {
+            ApiRequest::failJsonRequest('empty params');
+        }
+        $newContent = '';
+        $content = parse_url($content);
+        foreach ($content as $key => $item) {
+            if ($key == 'query') {
+                $newContent .= 'Query:'."\n\n";
+                $queryArray = explode('&', $item);
+                foreach ($queryArray as $queryValue) {
+                    $explodeData = explode('=', $queryValue);
+                    $k = $explodeData[0] ?? '';
+                    if (empty($k)) {
+                        continue;
+                    }
+                    $v = $explodeData[1] ?? '';
+                    $v = urldecode($v);
+                    $newContent .= "{$k} : {$v}";
+                    $newContent .= "\n";
+                }
+            } else {
+                $newContent .= "{$key} : {$item}";
+            }
+            $newContent .= "\n";
         }
 
         ApiRequest::successJsonRequest(['content' => $newContent]);

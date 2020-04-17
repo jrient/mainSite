@@ -2,27 +2,27 @@
 @extends('tools.layouts')
 
 @section('title')
-    工具集 - UrlEncode编码转换
+    工具集 - Url参数解析
 @endsection
 
 @section('content_title')
-    <h2 class="text-center">UrlEncode编码转换 <a href="/tools"><small>工具集</small></a></h2>
+    <h2 class="text-center">Url参数解析 <a href="/tools"><small>工具集</small></a></h2>
 @endsection
 
 @section('content')
     <div class="container" style="">
         <div class="row">
             <div class="col-md-5">
-                <textarea rows="25" class="form-control" id="left" placeholder="编码前"></textarea>
+                <textarea rows="25" class="form-control" id="left" placeholder="解析前"></textarea>
             </div>
-            <div class="col-md-1 center-block" style="padding-top: 100px;">
+            <div class="col-md-2 center-block" style="padding-top: 100px;">
                 <button class="btn btn-default btn-block" id="to_right"><span class="oi oi-arrow-thick-right"></span></button>
             </div>
-            <div class="col-md-1 center-block" style="padding-top: 100px;">
-                <button class="btn btn-default btn-block" id="to_left"><span class="oi oi-arrow-thick-left"></span></button>
-            </div>
+{{--            <div class="col-md-1 center-block" style="padding-top: 100px;">--}}
+{{--                <button class="btn btn-default btn-block" id="to_left"><span class="oi oi-arrow-thick-left"></span></button>--}}
+{{--            </div>--}}
             <div class="col-md-5">
-                <textarea rows="25" class="form-control" id="right" placeholder="编码后"></textarea>
+                <textarea rows="25" class="form-control" id="right" placeholder="解析后"></textarea>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
         $('#to_right').click(function(){
             var content = $('#left').val();
             $.ajax({
-                'url' : '/toolsUrlEncodeConversionAjax',
+                'url' : '/toolsUrlAnalysisAjax',
                 'type': 'post',
                 'data': {
                     'content' : content,

@@ -6,24 +6,24 @@
 @endsection
 
 @section('content_title')
-    <h2 class="text-center">工具集</h2>
+    <div style="margin: 10px auto">
+        <h1 class="text-center">工具集</h1>
+    </div>
 @endsection
 
 @section('content')
     <div class="container" style="">
-        <div class="row">
+        @foreach ($map as $k =>$item)
+            @if ($k%4 === 0)
+                <div class="row" style="margin-top: 1rem;">
+            @endif
             <div class="col-md-3">
-                <a class="btn btn-secondary" href="/toolsTimestampConversion">时间戳转换</a>
+                <a class="btn btn-secondary" href="{{$item['url']}}">{{$item['name']}}</a>
             </div>
-            <div class="col-md-3">
-                <a class="btn btn-secondary" href="/toolsJsonConversion">Json-PHP转换</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-secondary" href="/toolsBase64Conversion">Base64编码转换</a>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-secondary" href="/toolsUrlEncodeConversion">UrlEncode编码转换</a>
-            </div>
-        </div>
+
+            @if ($k%4 === 3 || ($k+1) === $total)
+                </div>
+            @endif
+        @endforeach
     </div>
 @endsection

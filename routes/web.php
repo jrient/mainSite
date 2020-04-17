@@ -36,6 +36,12 @@ Route::middleware('debug')->namespace('Tools')->group(function(){
         $tempObj = new $className;
         return call_user_func([$tempObj, $action]);
     });
+    Route::get('activity/{controller}/{action}', function($controller, $action) {
+        $namespace = 'App\Http\Controllers\Activity\\';
+        $className  = $namespace.ucfirst($controller).'Controller';
+        $tempObj = new $className;
+        return call_user_func([$tempObj, $action]);
+    });
 
     Route::get('tools', [
         'uses' => 'ToolsController@index'
